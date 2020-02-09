@@ -17,7 +17,7 @@ namespace Assignment1_Spring2020
 
             Console.WriteLine();
             Console.WriteLine("**************************************************************");
-            string s = "09:15:37PM"; //this sets string variable s with value as "09:15:37PM".
+            string s = "09:15:35PM"; //this sets string variable s with value as "09:15:37PM".
             string t = UsfTime(s); //Calling the function UsfTime which has been implemented below
             Console.WriteLine(t);
 
@@ -146,13 +146,16 @@ namespace Assignment1_Spring2020
 
                 int usf_secs = Convert.ToInt32(TimeSpan.Parse(d.ToString("HH:mm:ss")).TotalSeconds); //Converting the given datetime value into total number of seconds.
 
+                Console.WriteLine("Total seconds:" + usf_secs);
+
                 int usf_hr = (usf_secs / (60 * 45));     //Calculating the total hours in the USF world based on the total seconds
-                //Console.WriteLine("USF Hours: " + usf_hr);  //Printing the total hours as per the USF world.              
+                Console.WriteLine("USF Hours: " + usf_hr);  //Printing the total hours as per the USF world.              
 
-                int usf_min = usf_secs / 45;//Calculating the total mins in the USF world based on the total seconds after calculating the hours
-                //Console.WriteLine("USF Mins: " + usf_min);//Printing the total remaining mins as per the USF world.
+                int usf_min = (usf_secs - (usf_hr * 60 * 45))/ 45;//Calculating the total mins in the USF world based on the total seconds after calculating the hours
+                Console.WriteLine("USF Mins: " + usf_min);//Printing the total remaining mins as per the USF world.
+                //Console.WriteLine("USF Seconds: " + usf_seconds);
 
-                usf_secs = usf_secs - (usf_min * 45);   //Calculating the remaining seconds
+                usf_secs = (usf_secs - (usf_hr * 60 * 45)) % 45;   //Calculating the remaining seconds
                 //Console.WriteLine("USF secs: " + secs);//Printing the total remaining seconds as per the USF world.
 
                 string usf_time = Convert.ToString(usf_hr + ":" + usf_min + ":" + usf_secs); //Converting the time as per the USF World into a String
@@ -341,6 +344,7 @@ namespace Assignment1_Spring2020
 
                 else
                 {
+
                     arr.Add(n4 % 4);        //adds the reminder of the operation n4 divided by 4 as the first value in the integer array arr 
                     Console.WriteLine("Player 1 Turn(1,2,3):" + (n4 % 4));
                     player = 2;// this sets the integer variable player to 2
@@ -354,19 +358,15 @@ namespace Assignment1_Spring2020
                         {
                             Console.WriteLine("You have entered a wrong option!!");
                         }
+
                         else
                         {
                             arr.Add(input); //Adds the value of the integer variable input at the end of the integer list arr
+                            player = (player == 1 ? 2 : 1); //Changes the integer value of player to 1 if its 2 or vice versa
                         }
-
-                        player = (player == 1 ? 2 : 1); //Changes the integer value of player to 1 if its 2 or vice versa
                     }
-
                     Console.WriteLine("[" + String.Join(", ", arr) + "]");  //Prints all the values in the integer list arr
-
                 }
-
-
             }
             catch
             {
