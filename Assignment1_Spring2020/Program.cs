@@ -356,11 +356,17 @@ namespace Assignment1_Spring2020
                         Console.WriteLine("Player " + player + " Turn(1,2,3):");
                         int input = Convert.ToInt32(Console.ReadLine()); 	//Converts the value from the console into an integer
 
-                        if (input < 0 || input > 3|| (arr.Sum() + input) > n4) 	//checks if the value stored in the variable input is not in between 0 to 3
+                        if (input < 0 || input > 3|| (arr.Sum() + input) > n4)
+                        /*
+                        checks the below conditions:
+                        if the value stored in the variable input is less than 0    OR
+                        if the value stored in the variable input is greater than 3 OR 
+                        if the value stored in the variable input when added to the sum of integer array arr is more than n4  
+                     */
                         {
-                            Console.WriteLine("You have entered a wrong option!!");
+                            Console.WriteLine("You either have entered a wrong option or the value has gone out of scope!!");
                         }
-
+			    
                         else
                         {
                             arr.Add(input); 				//Adds the value of the integer variable input at the end of the integer list arr
